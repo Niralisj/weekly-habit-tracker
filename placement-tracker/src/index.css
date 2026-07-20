@@ -1,0 +1,472 @@
+:root {
+  --bg: #141414;
+  --card: #181818;
+  --card-hi: #232323;
+  --red: #e50914;
+  --red-hi: #f40612;
+  --green: #46d369;
+  --text: #ffffff;
+  --text-dim: #b3b3b3;
+  --text-faint: #6e6e6e;
+  --border: #2a2a2a;
+  --display-font: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --body-font: 'Inter', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+.task-check:focus-visible {
+  outline: 2px solid var(--red-hi);
+  outline-offset: 2px;
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.topbar-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.eyebrow {
+  margin: 0 0 2px;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--display-font);
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.week-range {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  flex-shrink: 0;
+}
+
+.streak-flame {
+  font-size: 15px;
+  filter: grayscale(1);
+}
+
+.streak-badge--lit .streak-flame {
+  filter: none;
+}
+
+.streak-badge--lit {
+  border-color: var(--red);
+}
+
+.streak-num {
+  font-family: var(--display-font);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.progress-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red), var(--red-hi));
+  transition: width 0.35s ease;
+}
+
+/* ---------- Day strip ---------- */
+
+.day-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.day-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.day-pill {
+  position: relative;
+  flex: 0 0 auto;
+  width: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 0 9px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-faint);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.day-pill--dim {
+  color: var(--text-faint);
+}
+
+.day-pill--started {
+  color: var(--text-dim);
+  border-color: #3a2020;
+}
+
+.day-pill--complete {
+  color: var(--text);
+  background: linear-gradient(160deg, #3a0d10, var(--card));
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px rgba(229, 9, 20, 0.25);
+}
+
+.day-pill--active {
+  border-color: var(--text);
+  transform: translateY(-2px);
+}
+
+.day-pill--future {
+  opacity: 0.55;
+}
+
+.day-pill-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.day-pill-date {
+  font-family: var(--display-font);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.day-pill-today-dot {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--red-hi);
+}
+
+/* ---------- Task panel ---------- */
+
+.panel-heading {
+  font-family: var(--display-font);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  margin: 0 0 12px;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 14px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.task-card--done {
+  background: var(--card-hi);
+  border-color: #2f3a2f;
+}
+
+.task-check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-faint);
+  background: transparent;
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.task-card--done .task-check {
+  background: var(--green);
+  border-color: var(--green);
+  color: #0a1f0f;
+}
+
+.task-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.task-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.task-label {
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.task-card--done .task-label {
+  color: var(--text-dim);
+  text-decoration: line-through;
+  text-decoration-color: var(--text-faint);
+}
+
+.must-tag {
+  flex-shrink: 0;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--red-hi);
+  border: 1px solid var(--red-hi);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.task-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-time {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 2px 7px;
+  border-radius: 5px;
+  color: var(--text);
+  background: #333;
+}
+
+.tag--dsa {
+  background: rgba(229, 9, 20, 0.18);
+  color: #ff6b6f;
+}
+.tag--gym {
+  background: rgba(70, 211, 105, 0.16);
+  color: var(--green);
+}
+.tag--college {
+  background: rgba(90, 130, 220, 0.16);
+  color: #7fa2f0;
+}
+.tag--extra {
+  background: rgba(180, 140, 240, 0.16);
+  color: #c6a6f7;
+}
+.tag--build {
+  background: rgba(60, 200, 200, 0.16);
+  color: #6fe0e0;
+}
+.tag--project {
+  background: rgba(230, 180, 60, 0.16);
+  color: #f0c25c;
+}
+.tag--placement {
+  background: rgba(240, 100, 160, 0.16);
+  color: #f57fb0;
+}
+.tag--review {
+  background: #333;
+  color: var(--text-dim);
+}
+.tag--bonus {
+  background: transparent;
+  color: var(--text-faint);
+  border: 1px dashed var(--text-faint);
+}
+
+/* ---------- Week Wrapped (signature element) ---------- */
+
+.wrapped-card {
+  background: linear-gradient(145deg, #1c1414, var(--card));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 18px 18px;
+}
+
+.wrapped-eyebrow {
+  margin: 0 0 14px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--red);
+}
+
+.wrapped-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.wrapped-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wrapped-num {
+  font-family: var(--display-font);
+  font-size: 32px;
+  line-height: 1;
+}
+
+.wrapped-label {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.wrapped-strip {
+  display: flex;
+  gap: 6px;
+}
+
+.wrapped-block {
+  flex: 1;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--border);
+}
+
+.wrapped-block--full {
+  background: linear-gradient(90deg, var(--red), var(--red-hi));
+}
+
+.wrapped-block--future {
+  background: repeating-linear-gradient(45deg, var(--border), var(--border) 3px, #202020 3px, #202020 6px);
+}
+
+/* ---------- Notes to self ---------- */
+
+.notes-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notes-heading {
+  margin: 0;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-card {
+  margin: 0;
+  background: var(--card);
+  border-left: 3px solid var(--red);
+  border-radius: 4px;
+  padding: 11px 13px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.foot-note {
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+@media (max-width: 380px) {
+  .title {
+    font-size: 28px;
+  }
+  .wrapped-num {
+    font-size: 26px;
+  }
+}
