@@ -470,3 +470,122 @@ button:focus-visible,
     font-size: 26px;
   }
 }
+
+.task-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.add-habit-btn{
+    padding:8px 14px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.15);
+    background:#1a1a1a;
+    color:#fff;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.add-habit-btn:hover{
+    background:#252525;
+}
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.habit-modal{
+    width:420px;
+    max-width:90%;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px;
+    box-shadow:0 20px 40px rgba(0,0,0,.45);
+}
+
+.habit-modal h2{
+    margin:0 0 18px;
+    font-family:var(--display-font);
+    font-weight:400;
+    letter-spacing:.03em;
+}
+
+.habit-modal input,
+.habit-modal select{
+    width:100%;
+    padding:12px;
+    margin-bottom:14px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:var(--card-hi);
+    color:var(--text);
+    font-family:inherit;
+}
+
+.habit-modal input:focus,
+.habit-modal select:focus{
+    outline:none;
+    border-color:var(--red);
+}
+.days-picker{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:18px 0;
+}
+
+.day-btn{
+    padding:8px 12px;
+    border:none;
+    border-radius:8px;
+    background:#222;
+    color:white;
+    cursor:pointer;
+}
+
+.day-btn.active{
+    background:var(--red);
+    color:white;
+}
+.critical-row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+.modal-actions button{
+    padding:10px 18px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+}
+
+.modal-actions button:first-child{
+    background:#2a2a2a;
+    color:white;
+}
+
+.modal-actions button:last-child{
+    background:var(--red);
+    color:white;
+}
+
+.modal-actions button:last-child:hover{
+    background:var(--red-hi);
+}
