@@ -589,3 +589,167 @@ button:focus-visible,
 .modal-actions button:last-child:hover{
     background:var(--red-hi);
 }
+
+
+/* ---------- Watch History ---------- */
+
+
+
+.heatmap-card{
+  background:linear-gradient(145deg,#1c1414,var(--card));
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px 18px 16px;
+}
+
+.heatmap-month{
+  margin:0;
+  font-family:var(--display-font);
+  font-weight:400;
+  font-size:28px;
+  letter-spacing:.02em;
+}
+
+.heatmap-wrapper{
+  margin-top:18px;
+}
+
+.heatmap-month-row{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:10px;
+}
+
+.heatmap-month-label{
+  flex:1;
+  padding-left:38px;
+  font-size:12px;
+  color:var(--text-faint);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.heatmap-content{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.heatmap-days{
+  display:grid;
+  grid-template-rows:repeat(7,18px);
+  gap:4px;
+  width:28px;
+}
+
+.heatmap-day-label{
+  display:flex;
+  align-items:center;
+  font-size:11px;
+  color:var(--text-faint);
+}
+
+.heatmap-weeks{
+  display:flex;
+  gap:5px;
+  flex:1;
+}
+
+.heatmap-week{
+  display:grid;
+  grid-template-rows:repeat(7,18px);
+  gap:4px;
+}
+
+.heatmap-cell{
+  width:15px;
+  height:15px;
+  border-radius:3px;
+  background:var(--border);
+  transition:all .18s ease;
+  cursor:pointer;
+}
+
+.heatmap-cell:hover{
+  transform:scale(1.25);
+  box-shadow:0 0 10px rgba(229,9,20,.25);
+}
+
+.heatmap-none{
+  background:#343434;
+}
+
+.heatmap-low{
+  background:#4d1418;
+}
+
+.heatmap-mid{
+  background:#7d181f;
+}
+
+.heatmap-high{
+  background:var(--red);
+}
+
+.heatmap-perfect{
+  background:var(--red-hi);
+  box-shadow:0 0 8px rgba(229,9,20,.45);
+}
+
+.heatmap-today{
+    border:2px solid white;
+    box-shadow:0 0 10px rgba(255,255,255,.15);
+}
+
+.heatmap-legend{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:var(--text-faint);
+}
+
+.heatmap-legend .heatmap-cell{
+  width:13px;
+  height:13px;
+}
+
+@media (max-width:600px){
+
+  .heatmap-content{
+    overflow-x:auto;
+    padding-bottom:6px;
+  }
+
+  .heatmap-weeks{
+    min-width:max-content;
+  }
+
+}
+
+
+.heatmap-day-spacer{
+    width:28px;
+}
+
+.heatmap-months{
+    display:flex;
+    flex:1;
+    gap:5px;
+}
+
+.heatmap-month-label{
+    width:18px;
+    font-size:11px;
+    color:var(--text-faint);
+    text-transform:uppercase;
+}
+
+.custom-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--red);
+}
